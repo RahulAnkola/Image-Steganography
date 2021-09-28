@@ -1,7 +1,5 @@
 from PIL import Image
 import cv2
-image1 = Image.open('waterfall2.jpg')
-image2 = Image.open('sunset2.jpg')
 
 
 def int2bin(rgb):
@@ -32,7 +30,6 @@ def merge2img2(img1, img2):
 
     image1 = img1
     image2 = img2
-    # print('rahul')
 
     # Condition for merging
     if(image1.size[0] > image2.size[0] or image1.size[1] > image2.size[1]):
@@ -42,19 +39,20 @@ def merge2img2(img1, img2):
    # Getting the pixel map of the two images
     pixel_tuple1 = image1.load()
     pixel_tuple2 = image2.load()
-
     # print(pixel_tuple1)
     # print(pixel_tuple2)
 
     # The new image that will be created.
     # Setting the size of Image 2 as Image 1 will be merged to Image 2.
     new_image = Image.new(image2.mode, image2.size)
+    # print(image2.mode)
     pixels_new = new_image.load()
 
     for row in range(image2.size[0]):
         for col in range(image2.size[1]):
 
             rgb1 = int2bin(pixel_tuple2[row, col])
+            # print(pixel_tuple2[row,col])
 
             # Using a black pixel as default
             rgb2 = int2bin((0, 0, 0))
@@ -70,7 +68,7 @@ def merge2img2(img1, img2):
 
     # print('rahul')
     new_image.convert('RGB').save('merged2.jpg')
-
+    # print(new_image.size[0],"  ",new_image.size[1])
     return new_image
 
 
@@ -82,7 +80,7 @@ def unmerge2(img):
     pixels_new = new_image.load()
 
     original_size = img.size
-
+    print("hello: ", original_size)
     for row in range(img.size[0]):
         for col in range(img.size[1]):
             r, g, b = int2bin(pixel_map[row, col])
@@ -107,6 +105,9 @@ def unmerge2(img):
 
 
 def main():
+    image1 = Image.open('waterfall2.jpg')
+    image2 = Image.open('sunset2.jpg')
+
     merged_image2 = merge2img2(image1, image2)
     unmerged_image2 = unmerge2(merged_image2)
 
