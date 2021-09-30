@@ -42,14 +42,14 @@ def merge(img1, img2):
                 rgb1 = intToBinary(n.array((0, 0, 0)))
             tup = mergeRGB(rgb1, rgb2)
             merge[row][col] = binaryToInt(tup)
-    cv2.imwrite('Merged.png', merge)
-    mergename = 'Merged.png'
+    cv2.imwrite('merged.png', merge)
+    mergename = 'merged.png'
     return mergename
 
 
 def unmerge(img):
     unmerge = n.zeros((img.shape[0], img.shape[1], 3), dtype=n.uint8)
-    size = [0, 0]
+    size = [0, 0]  # list
     row = -1
     col = -1
     for i in img:
@@ -64,25 +64,16 @@ def unmerge(img):
             unmerge[row][col] = binaryToInt(rgb)
             r, g, b = unmerge[row][col]
             if not (r == 0 and g == 0 and b == 0):
-                size=[row+1,col+1]
-            #else:
-            #    size=(row+1,col+1)
-    #print(size)
-    # for i in range(unmerge.shape[0]-1,0,-1):
-    #     r,g,b=unmerge[i][0]
-    #     if r==0 and b==0 and g==0:
-    #         r1=i
-    #     else:
-    #         break
-    
-    for i in range(unmerge.shape[1]-1,0,-1):
-        r,g,b=unmerge[0][i]
-        if r==0 and b==0 and g==0:
-            size[1]=i
+                size = [row+1, col+1]
+
+    for i in range(unmerge.shape[1]-1, 0, -1):
+        r, g, b = unmerge[0][i]
+        if r == 0 and b == 0 and g == 0:
+            size[1] = i
         else:
             break
 
-    unmerge1=unmerge[0:size[0],0:size[1]]
+    unmerge1 = unmerge[0:size[0], 0:size[1]]
     cv2.imwrite('unmerged.png', unmerge1)
 
 
@@ -90,23 +81,9 @@ def main():
     # merge image1 to image2
     image1 = cv2.imread('waterfall2.png', 1)
     image2 = cv2.imread('sunset2.png', 1)
-    #cv2.imwrite('mergedScratch.png', image2)
-    #image2_copy = cv2.imread('mergedScratch.png', 1)
-    # x=0
-    # for i in image1:
-    #     for pixel in i:
-    #         x+=1
-    #         print("For loop: ",pixel)
-    #         if x==10:
-    #             break
-    #     if x==10:
-    #         break
-    # print("Normal 0,0: ",image1[0][0])
-    # print("Normal 0,10: ",image1[0][10])
     # print(image1.shape) # 200,300,3
-
     mergename = merge(image1, image2)
-    mergedImage = cv2.imread(mergename, 1)
+    mergedImage = cv2.imread(mergename, 1) 
     unmerge(mergedImage)
 
 
