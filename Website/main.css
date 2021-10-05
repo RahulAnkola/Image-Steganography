@@ -1,0 +1,39 @@
+#vanta-background {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-heading-lsb {
+  font-family: "Birthstone", cursive;
+
+  padding: 0;
+}
+
+.general-info-card {
+  margin-top: 100px;
+}
+
+.general-info-card-body {
+  background-color: #15557a;
+  color: white;
+}
+
+#readmore{
+    display: none;
+}
+
+/* trying for phone */
+
+@media (max-width: 350px) {
+  #header-card-abtlsb {
+    display: none;
+  }
+}
+
+@media (max-width: 500px)
+{
+    .image-stego-explanation{
+        font-size: 10px;
+    }
+}
