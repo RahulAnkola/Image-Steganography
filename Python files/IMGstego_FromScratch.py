@@ -42,8 +42,8 @@ def merge(img1, img2):
                 rgb1 = intToBinary(n.array((0, 0, 0)))
             tup = mergeRGB(rgb1, rgb2)
             merge[row][col] = binaryToInt(tup)
-    cv2.imwrite('merged.png', merge)
-    mergename = 'merged.png'
+    cv2.imwrite(r'Images\merged.png', merge)
+    mergename = 'Images\merged.png'
     return mergename
 
 
@@ -74,16 +74,16 @@ def unmerge(img):
             break
 
     unmerge1 = unmerge[0:size[0], 0:size[1]]
-    cv2.imwrite('unmerged.png', unmerge1)
+    cv2.imwrite(r'Images\unmerged.png', unmerge1)
 
 
 def main():
     # merge image1 to image2
-    image1 = cv2.imread('waterfall2.png', 1)
-    image2 = cv2.imread('sunset2.png', 1)
+    image1 = cv2.imread(r'Images\waterfall2.png', 1)
+    image2 = cv2.imread(r'Images\sunset2.png', 1)
     # print(image1.shape) # 200,300,3
     mergename = merge(image1, image2)
-    mergedImage = cv2.imread(mergename, 1) 
+    mergedImage = cv2.imread(mergename, 1)
     unmerge(mergedImage)
 
 

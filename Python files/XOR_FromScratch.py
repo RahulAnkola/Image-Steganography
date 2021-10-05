@@ -54,7 +54,7 @@ def encodeData(img):
 
         if index >= dataLen:
             break
-    stegoImage = 'file.png'
+    stegoImage = r'Images\file.png'
     cv2.imwrite(stegoImage, img)
     print("Data encoded successfully")
 
@@ -80,9 +80,9 @@ def decodeData(img):
 
 
 def main():
-    image = cv2.imread('download2.png', 1)
+    image = cv2.imread(r'Images\download2.png', 1)
     encodeData(image)
-    image1 = cv2.imread('file.png')
+    image1 = cv2.imread(r'Images\file.png')
     decodeData(image1)
 
 
