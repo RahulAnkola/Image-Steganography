@@ -9,10 +9,10 @@ def xor(a, b):
 
 
 def toBinary(msg):
-    if type(msg) == n.ndarray:
+    if type(msg) == n.ndarray:  #for numpy array
         binary = [format(i, "08b") for i in msg]
         return binary
-    binary = ''.join([format(ord(i), "08b") for i in msg])
+    binary = ''.join([format(ord(i), "08b") for i in msg])  #for string 
     return binary
 
 
@@ -74,9 +74,9 @@ def decodeData(img):
         msgBinary.append(binaryData[i:i+8])
         decoded += chr(int(msgBinary[i//8], 2))
         if decoded[-3:] == '***':
-            print("*** reached")
+            #print("*** reached")
             break
-    print("\nEncoded data:", decoded)
+    print("\nEncoded data:", decoded[:-3])
 
 
 def main():
