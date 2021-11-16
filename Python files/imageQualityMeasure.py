@@ -28,6 +28,21 @@ def PSNR(c, s):
     return psnr
 
 
+def AD(c, s):
+    ad = np.sum(c-s)/(c.shape[0]*c.shape[1])
+    ad= float("{0:.3f}".format(ad))
+    return ad
+
+def NCC(c,s):
+    ncc=np.sum((c*s)**2)/np.sum(c**2)
+    ncc=float("{0:.3f}".format(ncc))
+    return ncc
+def IF(c,s):
+    imf=1-NCC(c,s)
+    imf=float("{0:.3f}".format(imf))
+    return imf
+
+
 def main():
     #cover=input('Cover image name with extension: ')
     #stego=input('Stego imgae name with extension: ')
@@ -49,11 +64,18 @@ def main():
     mse = MSE(c, s)
     rmse = RMSE(c, s)
     snr = SNR(c, s)
-    psnr=PSNR(c,s)
+    psnr = PSNR(c, s)
+    ad= AD(c,s)
+    ncc=NCC(c,s)
+    imf=IF(c,s)
     print('Mean square error (MSE):', mse)
     print('Root Mean square error (RMSE):', rmse)
     print('Signal-to-noise ratio (SNR): ', snr)
-    print('Peak signal-to-noise ratio (PSNR)',psnr)
+    print('Peak signal-to-noise ratio (PSNR)', psnr)
+    print('Average Difference (AD):',ad)
+    print('Normalized cross correlation (NCC):', ncc)
+    print('Image Fidelity (IF):',imf)
+
     print()
 
 
