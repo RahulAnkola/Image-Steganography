@@ -2,7 +2,6 @@ import cv2
 import numpy as np
 import math as math
 
-
 def to3decimal(x):
     return float("{0:.3f}".format(x))
 
@@ -84,28 +83,24 @@ def DSSIM(c, s):
     return dssim
 
 
-def capacity(c):
+def UIQI(c, s):
+    mu_c = c.mean()
+    mu_s = s.mean()
+    sd_c = np.std(c)
+    sd_s = np.std(s)
+    cor = np.correlate(np.ndarray.flatten(c), np.ndarray.flatten(s))
+    Q = (4*cor*mu_c*mu_s)/((sd_c**2 + sd_s**2)*(mu_c**2 + mu_s**2))
+    Q = Q[0]
+    Q = to3decimal(Q)
+    return Q
+
+
+def capacity(c,s):
     cap = (c.shape[0]*c.shape[1]*3)//8
-    print('Embedding capacity of cover image is', cap, 'characters (8 bit)\n')
+    print('Total embedding capacity of cover image is', cap, 'characters (8 bit)\n')
 
 
-def main():
-    c = input('Cover image name with extension: ')
-    s = input('Stego imgae name with extension: ')
-    c = 'Images\\' + c
-    s = 'Images\\' + s
-
-    c = cv2.imread(c, 1)
-    s = cv2.imread(s, 1)
-
-    # c = np.array([[[20, 30, 10], [10, 20, 30], [10, 40, 30]],
-    #  [[70, 10, 80], [30, 90, 40], [30, 60, 50]],
-    #  [[50, 50, 50], [10, 50, 90], [30, 60, 10]]])
-
-    # s = np.array([[[21, 29, 11], [10, 21, 29], [10, 40, 30]],
-    #  [[71, 10, 79], [30, 91, 39], [31, 61, 51]],
-    #  [[50, 50, 50], [10, 51, 90], [31, 60, 9]]])
-
+def qualityMeasures(c,s):
     print()
 
     mse = MSE(c, s)
@@ -119,8 +114,9 @@ def main():
     nae = NAE(c, s)
     ssim = SSIM(c, s)
     dssim = DSSIM(c, s)
+    uiqi = UIQI(c, s)
 
-    capacity(c)
+    capacity(c,s)
     print('Mean square error (MSE):', mse)
     print('Root Mean square error (RMSE):', rmse)
     print('Signal-to-noise ratio (SNR): ', snr)
@@ -128,12 +124,10 @@ def main():
     print('Average Difference (AD):', ad)
     print('Normalized cross correlation (NCC):', ncc)
     print('Image Fidelity (IF):', imf)
-    print('(SC):', sc)
+    print('Structural Content (SC):', sc)
     print('Normalised Absolute Error (NAE):', nae)
     print('Structural similarity index measure (SSIM):', ssim)
     print('Structural dissimilarity index measure (DSSIM):', dssim)
+    print('Universal Image Quality Index (UIQI):', uiqi)
 
     print()
-
-
-main()
