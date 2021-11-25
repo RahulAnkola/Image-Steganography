@@ -6,7 +6,8 @@ import random
 
 def cropping(c, s):
     print('\n----CROPPING----\n')
-    p = float(input('Enter the % to crop: '))
+    #p = float(input('Enter the % to crop: '))
+    p = 10
     row = int(c.shape[0]*(1-p/100))
     col = int(c.shape[1]*(1-p/100))
     s = s[0:row, 0:col]
@@ -70,11 +71,42 @@ def saltAndPepperNoise(c, s):
     iqm.qualityMeasures(c, out)
 
 
+def medianFilter(c, s):
+    print('\n----MEDIAN FILTER----\n')
+    median = cv2.medianBlur(s, 5)
+    iqm.qualityMeasures(c, median)
+
+
+def averageFilter(c, s):
+    print('\n----MEAN FILTER----\n')
+    avg = cv2.blur(s, (6, 6))
+    iqm.qualityMeasures(c, avg)
+
+
+def sharpening(c, s):
+    print('\n----SHARPENING----\n')
+    kernel = np.array([[0, -1, 0],
+                       [-1, 5, -1],
+                       [0, -1, 0]])
+    sharp = cv2.filter2D(src=s, ddepth=-1, kernel=kernel)
+    iqm.qualityMeasures(c, sharp)
+
+
+def histogramEqualization(c, s):
+    print('\n----HISTOGRAM EQUALIZATION----\n')
+    r, g, b = cv2.split(s)
+    r_hist = cv2.equalizeHist(r)
+    g_hist = cv2.equalizeHist(g)
+    b_hist = cv2.equalizeHist(b)
+    hist = cv2.merge((r_hist, g_hist, b_hist))
+    iqm.qualityMeasures(c, hist)
+
+
 def main():
     #    cover = 'Images\\' + input('Cover image name with extension: ')
     #    stego = 'Images\\' + input('Stego imgae name with extension: ')
-    cover = 'Images\\sunset2.png'
-    stego = 'Images\\merged.png'
+    cover = 'Images\\download2.png'
+    stego = 'Images\\file.png'
     coverImage = cv2.imread(cover, 1)
     stegoImage = cv2.imread(stego, 1)
 
@@ -82,12 +114,17 @@ def main():
     iqm.qualityMeasures(coverImage, stegoImage)
 
     print('\nQuality meaasures after the following robustness attacks: \n')
+    
     cropping(coverImage, stegoImage)
     rotate(coverImage, stegoImage)
     gaussianNoise(coverImage, stegoImage)
     poissonNoise(coverImage, stegoImage)
     speckleNoise(coverImage, stegoImage)
     saltAndPepperNoise(coverImage, stegoImage)
+    medianFilter(coverImage, stegoImage)
+    averageFilter(coverImage, stegoImage)
+    sharpening(coverImage, stegoImage)
+    histogramEqualization(coverImage, stegoImage)
 
 
 main()
