@@ -20,8 +20,8 @@
   color: white;
 }
 
-#readmore{
-    display: none;
+#readmore {
+  display: none;
 }
 
 /* trying for phone */
@@ -32,9 +32,8 @@
   }
 }
 
-@media (max-width: 500px)
-{
-    .image-stego-explanation{
-        font-size: 10px;
-    }
+@media (max-width: 500px) {
+  .image-stego-explanation {
+    font-size: 10px;
+  }
 }

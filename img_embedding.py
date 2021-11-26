@@ -23,6 +23,7 @@ def mergeRGB(rgb1, rgb2):
     return rgb  # tuple
 
 
+# merge image1 to image2
 def merge(img1, img2):
     if img1.shape[0] > img2.shape[0] or img1.shape[1] > img2.shape[1]:
         print("Reduce the size of embedding image or increase the size of cover image")
@@ -42,9 +43,9 @@ def merge(img1, img2):
                 rgb1 = intToBinary(n.array((0, 0, 0)))
             tup = mergeRGB(rgb1, rgb2)
             merge[row][col] = binaryToInt(tup)
-    cv2.imwrite(r'Images\merged.png', merge)
-    mergename = 'Images\merged.png'
-    return mergename
+    
+    stegoImage = r"C:\Users\ASUS\Desktop\ImageStego.png"
+    cv2.imwrite(stegoImage, merge)
 
 
 def unmerge(img):
@@ -74,17 +75,5 @@ def unmerge(img):
             break
 
     unmerge1 = unmerge[0:size[0], 0:size[1]]
-    cv2.imwrite(r'Images\unmerged.png', unmerge1)
-
-
-def main():
-    # merge image1 to image2
-    image1 = cv2.imread(r'Images\waterfall2.png', 1)
-    image2 = cv2.imread(r'Images\sunset2.png', 1)
-    # print(image1.shape) # 200,300,3
-    mergename = merge(image1, image2)
-    mergedImage = cv2.imread(mergename, 1)
-    unmerge(mergedImage)
-
-
-main()
+    unmergeURL = r"C:\Users\ASUS\Desktop\UnmergedImage.png"
+    cv2.imwrite(unmergeURL, unmerge1)

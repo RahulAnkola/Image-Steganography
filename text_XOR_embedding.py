@@ -2,6 +2,7 @@ import cv2
 import numpy as n
 
 
+
 def xor(a, b):
     if a == b:
         return '0'
@@ -16,8 +17,7 @@ def toBinary(msg):
     return binary
 
 
-def encodeData(img):
-    data = input("Enter data to encode: ")
+def encodeData(img,data):
     data += '***'
     capacity = (img.shape[0]*img.shape[1]*3)//8
 
@@ -54,7 +54,7 @@ def encodeData(img):
 
         if index >= dataLen:
             break
-    stegoImage = r'Images\file.png'
+    stegoImage = r"C:\Users\ASUS\Desktop\TextStego.png"
     cv2.imwrite(stegoImage, img)
     print("Data encoded successfully")
 
@@ -77,13 +77,4 @@ def decodeData(img):
             #print("*** reached")
             break
     print("\nEncoded data:", decoded[:-3])
-
-
-def main():
-    image = cv2.imread(r'Images\download2.png', 1)
-    encodeData(image)
-    image1 = cv2.imread(r'Images\file.png')
-    decodeData(image1)
-
-
-main()
+    return decoded[:-3]

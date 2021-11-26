@@ -57,19 +57,19 @@
                 Decode
             </button>
         </div>
-
+          <!-- Encode -->
         <div class="container fluid-container image-stego-card display-imagestego-card">
 
-            <form action="">
+            <form action="{{ url_for('imgEncode') }}" method="post" enctype = "multipart/form-data">
                 <label class="form-label" for="">
                     <h2>Cover Image</h2>
                 </label>
-                <input class="form-control" type="file" name="" id="" accept="image/*">
+                <input class="form-control" type="file" name="coverImage">
                 <br>
                 <label class="form-label" for="">
                     <h2>Watermark Image</h2>
                 </label>
-                <input class="form-control" type="file" name="" id="" accept="image/*">
+                <input class="form-control" type="file" name="watermarkImage">
                 <br></br>
                 <button class="btn btn-primary form-control" type='submit'>Encode</button>
             </form>
@@ -78,11 +78,11 @@
         <!-- DECODE -->
         <div class="container fluid-container image-stego-card display-decodecard">
 
-            <form action="">
+            <form action="{{ url_for('imgDecode') }}" method="post" enctype = "multipart/form-data">
                 <label class="form-label" for="">
-                    <h2>Cover Image</h2>
+                    <h2>Stego Image</h2>
                 </label>
-                <input class="form-control" type="file" name="" id="" accept="image/*">
+                <input class="form-control" type="file" name="stegoImage">
                 <br>
                 <button class="btn btn-primary form-control" type='submit'>Decode</button>
             </form>
@@ -121,3 +121,4 @@
 </body>
 
 </html>
+
