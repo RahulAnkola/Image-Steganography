@@ -16,7 +16,7 @@ def cropping(c, s):
 
 
 def rotate(c, s):
-    print('\n----ROTATING----\n')
+    print('\n----ROTATING 180°----\n')
     s = cv2.rotate(s, cv2.ROTATE_180)
     iqm.qualityMeasures(c, s)
 
