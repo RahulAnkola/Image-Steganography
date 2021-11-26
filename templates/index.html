@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Birthstone&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./CSS/main.css">
+    <link rel="stylesheet" href="{{ url_for('static',filename='main.css') }}">
 </head>
 
 <body>
@@ -21,32 +21,26 @@
 
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container-fluid">
-                <a class="navbar-brand navbar-heading-lsb" href="#"><span class="display-1">LSB-Steganography</span></a>
+                <a class="navbar-brand navbar-heading-lsb" href="#"><span class="display-1">LSB-Image Steganography</span></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-end px-4" id="navbarNav">
                     <ul class="navbar-nav ">
-                        <li class="nav-item px-2  ">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
-                        </li>
                         <li class="nav-item dropdown text-white">
                             <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDarkDropdownMenuLink"
                                 role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Features
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                                <li><a class="dropdown-item " href="#section-implementation-header">Implementation</a>
+                                <li><a class="dropdown-item " href="./stegoimg.html">Embed Image</a>
                                 </li>
-                                <li><a class="dropdown-item " href="#">Algorithm</a></li>
+                                <li><a class="dropdown-item " href="./stegotext.html">Embed Text</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item px-2 ">
-                            <a class="nav-link text-white" href="#">Team</a>
-                        </li>
-                        <li class="nav-item px-2 ">
-                            <a class="nav-link text-white">Contact Us</a>
+                        <li class="nav-item px-2  ">
+                            <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
                         </li>
                     </ul>
                 </div>
@@ -62,12 +56,9 @@
                         <div class="card-body general-info-card-body">
                             <h5 class="card-title fs-3">LSB Steganogrpahy</h5>
                             <p class="card-text pt-3">LSB stands for <span style="font-weight: 700;" ;>Least Significant
-                                    Bit.</span> It is the easiest way to embed secret information. <span
-                                    id="header-card-abtlsb">By replacing the
-                                    minimm
-                                    weighting value of a sampled speech signal with binary bits of secret information
-                                    data,
-                                    the secret information can be hidden in the speech.</span></p>
+                                    Bit.</span> It is a way to embed secret information by replacing the minimm weighting 
+                                    value of a sampled speech signal with binary bits of secret information data, the secret information 
+                                    can be hidden in the speech.</p>
                             <a href="#section-implementation-header" class="btn btn-success px-5 mt-3">Explore</a>
                         </div>
                     </div>
@@ -90,26 +81,19 @@
     <section class="section-implementation-image container-fluid pt-5" style="background-color: bisque;">
         <div class="row align-items-center justify-content-center">
             <div class="col-12 col-lg-6">
-                <p class="display-1 text-center">Image Steganography</p>
+                <p class="display-1 text-center">Image Embedding</p>
             </div>
             <div class="col-11 col-lg-6 px-4">
                 <p class="fs-5 my-lg-3 image-stego-explanation">As the name suggests, Image steganography refers to the process of hiding data with an 
                     image file. The image selected for this purpose is called the cover image and the image obtained
-                    after steganography is called the stego image. <br> An image is repr
-                    esented as an N*M (in case of greyscale images) or N*M*3 (in case of color images) matrix in
+                    after steganography is called the stego image. <br> An image is represented as an N*M (in case of greyscale images) or N*M*3 (in case of color images) matrix in
                      memory, with each entry representing the intensity value of a pixel. In image steganography,
                       a message is embedded into an image by altering the values of some pixels, which are chosen
                        by an encryption algorithm. The recipient of the image must be aware of the same algorithm
                         in order to known which pixels he or she must select to extract the message. 
-                        <span id="readmore"><br>Detection of the message within the cover image is done by the process of steganalysis.
-                         This can be done through comparison with the cover image, histogram plotting, or
-                          noise detection. While efforts are being invested in developing new algorithms 
-                          with a greater degree of immunity against such attacks, efforts are also being 
-                          devoted towards improving existing algorithms for steganalysis, to detect the 
-                          exchange of secret information between terrorists or criminal elements. </span>
-                          <button onclick="myFunction()" class="btn btn-link px-0" id="dots">Read More...</button>
+                        
                 <br><br>
-                <a class="btn btn-dark mb-3" href="#" role="button">Implement</a>
+                <a class="btn btn-dark mb-3" href="./stegoimg.html" role="button">Implement</a>
             </p>
             </div>
         </div>
@@ -119,30 +103,17 @@
     <section class="section-implementation-text container-fluid pt-5" style="background-color: bisque;" data-mdb>
         <div class="row align-items-center justify-content-center">
             <div class="col-12 col-lg-6 order-lg-1">
-                <p class="display-1 text-center">Text Steganography</p>
+                <p class="display-1 text-center">Text Embedding</p>
             </div>
             <div class="col-11 col-lg-6 px-4 order-lg-0">
-                <p class="fs-5 my-lg-3 image-stego-explanation px-2">As the name suggests, Image steganography refers to the process of hiding data with an 
-                    image file. The image selected for this purpose is called the cover image and the image obtained
-                    after steganography is called the stego image. <br> An image is repr
-                    esented as an N*M (in case of greyscale images) or N*M*3 (in case of color images) matrix in
-                     memory, with each entry representing the intensity value of a pixel. In image steganography,
-                      a message is embedded into an image by altering the values of some pixels, which are chosen
-                       by an encryption algorithm. The recipient of the image must be aware of the same algorithm
-                        in order to known which pixels he or she must select to extract the message. 
-                        <span id="readmore"><br>Detection of the message within the cover image is done by the process of steganalysis.
-                         This can be done through comparison with the cover image, histogram plotting, or
-                          noise detection. While efforts are being invested in developing new algorithms 
-                          with a greater degree of immunity against such attacks, efforts are also being 
-                          devoted towards improving existing algorithms for steganalysis, to detect the 
-                          exchange of secret information between terrorists or criminal elements. </span>
-                          <button onclick="myFunction()" class="btn btn-link px-0" id="dots">Read More...</button>
+                <p class="fs-5 my-lg-3 image-stego-explanation px-2">Text steganography is a mechanism of hiding secret text message inside another text as a covering message or generating a cover message related with the original secret message
+                    <br> In steganography, the text to be concealed is called embedded data. An innocuous medium, such as text, image, audio, or video file; which is used to hide embedded data is called cover.
                 <br><br>
-                <a class="btn btn-dark mb-3" href="#" role="button">Implement</a>
+                <a class="btn btn-dark mb-3" href="./stegotext.html" role="button">Implement</a>
             </p>
             </div>
         </div>
-        <br><br>
+
     </section>
 
 
@@ -167,7 +138,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
         crossorigin="anonymous"></script>
-    <script src="./JavaScript/index.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,40 @@
+.chooseende{
+    width: 30%;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 2em; 
+}
+
+
+
+.image-stego-card{
+    width: 80%;
+    background-color: white;
+    margin-top: 2em;
+    border-radius: 10px;
+    box-shadow: 0px 10px 20px 5px grey;
+    display: flex;
+    flex-direction: column;
+    padding: 1em 2em;
+}
+
+.image-stego-card form{
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 2em;
+}
+
+.image-stego-card button{
+    width: 40%;
+    align-self: center;
+}
+
+.display-imagestego-card{
+    display: none;
+}
+.display-decodecard{
+    display: none;
+}
