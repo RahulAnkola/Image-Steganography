@@ -61,16 +61,17 @@
         <!-- Encode -->
         <div class="container fluid-container image-stego-card display-imagestego-card">
 
-            <form action="">
+            <form action="{{ url_for('txtEncode') }}" method="post">
                 <label class="form-label" for="">
                     <h2>Cover Image</h2>
                 </label>
-                <input class="form-control" type="file" name="" id="" accept="image/*">
+                <!-- <input class="form-control" type="file" name="" id="" accept="image/*"> -->
+                <input class="form-control" type="text" name="image">
                 <br>
                 <label class="form-label" for="">
                     <h2>Watermark Text</h2>
                 </label>
-                <textarea class="form-control" name="" id="" rows="5"></textarea>
+                <textarea class="form-control" name="text" id="" rows="5"></textarea>
                 <br></br>
                 <button class="btn btn-primary form-control" type='submit'>Encode</button>
             </form>

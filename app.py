@@ -1,4 +1,5 @@
 from flask import Flask, request, render_template
+import cv2
 
 app = Flask(__name__)
 
@@ -21,6 +22,13 @@ def stegotext():
 @app.route('/index.html')
 def index():
     return render_template("index.html")
+
+
+@app.route('/textEncoding',methods=['GET', 'POST'])
+def txtEncode():
+    txt=request.form['text']
+    url=request.form['image']
+    img=cv2.imread(url,1)
 
 
 if __name__ == "__main__":
