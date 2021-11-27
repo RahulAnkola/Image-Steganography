@@ -54,17 +54,38 @@
                 <div class="col col-sm-9 col-md-7 col-lg-4 ">
                     <div class="card border-0 rounded shadow-lg">
                         <div class="card-body general-info-card-body">
-                            <h5 class="card-title fs-3">LSB Steganogrpahy</h5>
+                            <h5 class="card-title fs-2">LSB Steganogrpahy</h5>
                             <p class="card-text pt-3">LSB stands for <span style="font-weight: 700;" ;>Least Significant
                                     Bit.</span> It is a way to embed secret information by replacing the minimm weighting 
                                     value of a sampled speech signal with binary bits of secret information data, the secret information 
                                     can be hidden in the speech.</p>
-                            <a href="#section-implementation-header" class="btn btn-success px-5 mt-3">Explore</a>
+                            <a href="#explore" class="btn btn-success px-5 mt-3">Explore</a>
+                            
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="container general-info-card">
+            <div class="row">
+                <div class="col col-sm-17 col-md-15 col-lg-10 ">
+                    <div class="card border-0 rounded shadow-lg">
+                        <div class="card-body general-info-card-body">
+                            <h5 class="card-title fs-2">Image Steganogrpahy</h5>
+                            <p class="card-text pt-3" >As the name suggests, Image steganography refers to the process of hiding data with an 
+                                image file. The image selected for this purpose is called the cover image and the image obtained
+                                after steganography is called the stego image. <br> An image is represented as an N*M (in case of greyscale images) or N*M*3 (in case of color images) matrix in
+                                 memory, with each entry representing the intensity value of a pixel. In lsb image steganography,
+                                  a message is embedded into an image by altering the values of the lsb pixels, which are chosen
+                                   by an encryption algorithm. The recipient of the image must be aware of the same algorithm
+                                    in order to known which pixels he or she must select to extract the message. </p>
+                            <a href="#explore" class="btn btn-success px-5 mt-3">Explore</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br><br><br><br><br><br>
 
 
     </header>
@@ -78,19 +99,18 @@
 
     </section>
 
-    <section class="section-implementation-image container-fluid pt-5" style="background-color: bisque;">
+    <section id="explore" class="section-implementation-image container-fluid pt-5" style="background-color: bisque;">
         <div class="row align-items-center justify-content-center">
             <div class="col-12 col-lg-6">
                 <p class="display-1 text-center">Image Embedding</p>
             </div>
             <div class="col-11 col-lg-6 px-4">
-                <p class="fs-5 my-lg-3 image-stego-explanation">As the name suggests, Image steganography refers to the process of hiding data with an 
-                    image file. The image selected for this purpose is called the cover image and the image obtained
-                    after steganography is called the stego image. <br> An image is represented as an N*M (in case of greyscale images) or N*M*3 (in case of color images) matrix in
-                     memory, with each entry representing the intensity value of a pixel. In image steganography,
-                      a message is embedded into an image by altering the values of some pixels, which are chosen
-                       by an encryption algorithm. The recipient of the image must be aware of the same algorithm
-                        in order to known which pixels he or she must select to extract the message. 
+                <p class="fs-5 my-lg-3 image-stego-explanation">As the name suggests, a secret image is embedded onto a cover
+                    image of your liking. This is done by embedding the two most significant bits of the secret image in the two
+                    least significant bits of the cover image. Your watermarked image will look the same as the cover image even
+                    though it has another image inside of it. You can also extract the watermarked image from the cover image. Click 
+                    on implement to encode or decode!
+                    <br><br><span style="font-size: 0.75em; opacity: 0.7;";>Note: Images will be stored on yor Desktop</span>
                         
                 <br><br>
                 <a class="btn btn-dark mb-3" href="./stegoimg.html" role="button">Implement</a>
@@ -106,9 +126,12 @@
                 <p class="display-1 text-center">Text Embedding</p>
             </div>
             <div class="col-11 col-lg-6 px-4 order-lg-0">
-                <p class="fs-5 my-lg-3 image-stego-explanation px-2">Text steganography is a mechanism of hiding secret text message inside another text as a covering message or generating a cover message related with the original secret message
-                    <br> In steganography, the text to be concealed is called embedded data. An innocuous medium, such as text, image, audio, or video file; which is used to hide embedded data is called cover.
-                <br><br>
+                <p class="fs-5 my-lg-3 image-stego-explanation px-2">Here a secret text can be encoded onto an image of your
+                     liking. The algorithm uses LSB replacement thorugh XOR substitution technique. Your stego image will 
+                     look the same as the cover image even though it has some text data encoded inside of it. You can also
+                     extract the text from the cover image. Click on implement to encode or decode.
+                    <br><br><span style="font-size: 0.75em; opacity: 0.7;";>Note: Stego image will be stored on yor Desktop</span>
+                    <br><br>
                 <a class="btn btn-dark mb-3" href="./stegotext.html" role="button">Implement</a>
             </p>
             </div>
