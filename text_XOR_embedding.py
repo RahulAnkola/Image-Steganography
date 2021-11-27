@@ -2,7 +2,6 @@ import cv2
 import numpy as n
 
 
-
 def xor(a, b):
     if a == b:
         return '0'
@@ -10,14 +9,14 @@ def xor(a, b):
 
 
 def toBinary(msg):
-    if type(msg) == n.ndarray:  #for numpy array
+    if type(msg) == n.ndarray:  # for numpy array
         binary = [format(i, "08b") for i in msg]
         return binary
-    binary = ''.join([format(ord(i), "08b") for i in msg])  #for string 
+    binary = ''.join([format(ord(i), "08b") for i in msg])  # for string
     return binary
 
 
-def encodeData(img,data):
+def encodeData(img, data):
     data += '***'
     capacity = (img.shape[0]*img.shape[1]*3)//8
 

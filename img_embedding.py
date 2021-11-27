@@ -43,7 +43,7 @@ def merge(img1, img2):
                 rgb1 = intToBinary(n.array((0, 0, 0)))
             tup = mergeRGB(rgb1, rgb2)
             merge[row][col] = binaryToInt(tup)
-    
+
     stegoImage = r"C:\Users\ASUS\Desktop\ImageStego.png"
     cv2.imwrite(stegoImage, merge)
 
