@@ -4,6 +4,11 @@ import numpy as np
 import random
 
 
+def save(img, robustness):
+    url = r"C:\\Users\\ASUS\\Desktop\\" + robustness + ".png"
+    cv2.imwrite(url, img)
+
+
 def cropping(c, s):
     print('\n----CROPPING----\n')
     #p = float(input('Enter the % to crop: '))
@@ -13,12 +18,14 @@ def cropping(c, s):
     s = s[0:row, 0:col]
     c = c[0:s.shape[0], 0:s.shape[1]]
     iqm.qualityMeasures(c, s)
+    save(s, 'cropping')
 
 
 def rotate(c, s):
     print('\n----ROTATING 180°----\n')
     s = cv2.rotate(s, cv2.ROTATE_180)
     iqm.qualityMeasures(c, s)
+    save(s, 'rotate')
 
 
 def gaussianNoise(c, s):
@@ -35,6 +42,7 @@ def gaussianNoise(c, s):
     out = np.clip(out, low_clip, 1.0)
     out = np.uint8(out*255)
     iqm.qualityMeasures(c, out)
+    save(out, 'gaussianNoise')
 
 
 def poissonNoise(c, s):
@@ -43,6 +51,7 @@ def poissonNoise(c, s):
     poissonNoise = np.random.poisson(imagea).astype(float)
     noisyImage = imagea + poissonNoise
     iqm.qualityMeasures(c, noisyImage)
+    save(noisyImage, 'poissonNoise')
 
 
 def speckleNoise(c, s):
@@ -51,6 +60,7 @@ def speckleNoise(c, s):
     gauss = gauss.reshape(s.shape[0], s.shape[1], 3).astype('uint8')
     noise = s + s * gauss
     iqm.qualityMeasures(c, noise)
+    save(noise, 'speckleNoise')
 
 
 def saltAndPepperNoise(c, s):
@@ -69,18 +79,21 @@ def saltAndPepperNoise(c, s):
     out[coords] = 0
 
     iqm.qualityMeasures(c, out)
+    save(out, 'saltAndPepperNoise')
 
 
 def medianFilter(c, s):
     print('\n----MEDIAN FILTER----\n')
     median = cv2.medianBlur(s, 5)
     iqm.qualityMeasures(c, median)
+    save(median, 'medianFilter')
 
 
 def averageFilter(c, s):
     print('\n----MEAN FILTER----\n')
     avg = cv2.blur(s, (6, 6))
     iqm.qualityMeasures(c, avg)
+    save(avg, 'averageFilter')
 
 
 def sharpening(c, s):
@@ -90,6 +103,7 @@ def sharpening(c, s):
                        [0, -1, 0]])
     sharp = cv2.filter2D(src=s, ddepth=-1, kernel=kernel)
     iqm.qualityMeasures(c, sharp)
+    save(sharp, 'sharpening')
 
 
 def histogramEqualization(c, s):
@@ -100,13 +114,14 @@ def histogramEqualization(c, s):
     b_hist = cv2.equalizeHist(b)
     hist = cv2.merge((r_hist, g_hist, b_hist))
     iqm.qualityMeasures(c, hist)
+    save(hist, 'histogramEqualization')
 
 
 def main():
     #    cover = 'Images\\' + input('Cover image name with extension: ')
     #    stego = 'Images\\' + input('Stego imgae name with extension: ')
-    cover = 'Images\\download2.png'
-    stego = 'Images\\file.png'
+    cover = 'Images\\sunset2.png'
+    stego = 'Images\\merged.png'
     coverImage = cv2.imread(cover, 1)
     stegoImage = cv2.imread(stego, 1)
 
@@ -114,7 +129,7 @@ def main():
     iqm.qualityMeasures(coverImage, stegoImage)
 
     print('\nQuality meaasures after the following robustness attacks: \n')
-    
+
     cropping(coverImage, stegoImage)
     rotate(coverImage, stegoImage)
     gaussianNoise(coverImage, stegoImage)
