@@ -6,9 +6,8 @@ import img_embedding
 
 
 app = Flask(__name__)
-
-UPLOAD_FOLDER = r"C:\Users\ASUS\Desktop"
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop\\')
+app.config['UPLOAD_FOLDER'] = desktop
 
 
 @app.route('/')
@@ -37,7 +36,7 @@ def txtEncode():
     imgFile = request.files['image']
     filename = 'TextCover.png'
     imgFile.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-    url = UPLOAD_FOLDER+'\\'+filename
+    url = desktop+filename
     img = cv2.imread(url, 1)
     text_XOR_embedding.encodeData(img, txt)
     return render_template("stegotext.html")
@@ -48,7 +47,7 @@ def txtDecode():
     imgFile = request.files['image']
     filename = 'TextStego.png'
     imgFile.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-    url = UPLOAD_FOLDER+'\\'+filename
+    url = desktop+filename
     img = cv2.imread(url, 1)
     data = text_XOR_embedding.decodeData(img)
     return 'Encoded Data:' + data
@@ -63,8 +62,8 @@ def imgEncode():
     watermark.save(os.path.join(
         app.config['UPLOAD_FOLDER'], 'ImageWatermark.png'))
 
-    urlCover = UPLOAD_FOLDER+'\\' + 'ImageCover.png'
-    urlWatermark = UPLOAD_FOLDER+'\\' + 'ImageWatermark.png'
+    urlCover = desktop + 'ImageCover.png'
+    urlWatermark = desktop + 'ImageWatermark.png'
 
     c = cv2.imread(urlCover, 1)
     w = cv2.imread(urlWatermark, 1)
@@ -76,7 +75,7 @@ def imgEncode():
 def imgDecode():
     stego = request.files['stegoImage']
     stego.save(os.path.join(app.config['UPLOAD_FOLDER'], 'ImageStego.png'))
-    urlStego = UPLOAD_FOLDER+'\\' + 'ImageStego.png'
+    urlStego = desktop + 'ImageStego.png'
     s = cv2.imread(urlStego, 1)
     img_embedding.unmerge(s)
     return render_template("stegoimg.html")

@@ -1,5 +1,9 @@
 import cv2
 import numpy as n
+import os 
+
+desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop\\')
+
 
 
 def intToBinary(msg):
@@ -44,7 +48,7 @@ def merge(img1, img2):
             tup = mergeRGB(rgb1, rgb2)
             merge[row][col] = binaryToInt(tup)
 
-    stegoImage = r"C:\Users\ASUS\Desktop\ImageStego.png"
+    stegoImage = desktop + 'ImageStego.png'
     cv2.imwrite(stegoImage, merge)
 
 
@@ -75,5 +79,5 @@ def unmerge(img):
             break
 
     unmerge1 = unmerge[0:size[0], 0:size[1]]
-    unmergeURL = r"C:\Users\ASUS\Desktop\UnmergedImage.png"
+    unmergeURL = desktop + 'UnmergedImage.png'
     cv2.imwrite(unmergeURL, unmerge1)

@@ -1,6 +1,8 @@
 import cv2
 import numpy as n
+import os
 
+desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop\\')
 
 def xor(a, b):
     if a == b:
@@ -53,7 +55,7 @@ def encodeData(img, data):
 
         if index >= dataLen:
             break
-    stegoImage = r"C:\Users\ASUS\Desktop\TextStego.png"
+    stegoImage = desktop + 'TextStego.png'
     cv2.imwrite(stegoImage, img)
     print("Data encoded successfully")
 

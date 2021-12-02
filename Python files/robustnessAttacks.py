@@ -2,10 +2,13 @@ import imageQualityMeasure as iqm
 import cv2
 import numpy as np
 import random
+import os
+
+desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop\\')
 
 
 def save(img, robustness):
-    url = r"C:\\Users\\ASUS\\Desktop\\" + robustness + ".png"
+    url = desktop + robustness + ".png"
     cv2.imwrite(url, img)
 
 
@@ -118,10 +121,9 @@ def histogramEqualization(c, s):
 
 
 def main():
-    #    cover = 'Images\\' + input('Cover image name with extension: ')
-    #    stego = 'Images\\' + input('Stego imgae name with extension: ')
-    cover = 'Images\\sunset2.png'
-    stego = 'Images\\merged.png'
+    cover = desktop + input('Cover image name with extension: ')
+    stego = desktop + input('Stego imgae name with extension: ')
+
     coverImage = cv2.imread(cover, 1)
     stegoImage = cv2.imread(stego, 1)
 
