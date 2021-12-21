@@ -19,4 +19,4 @@ TO CHECK FOR ROBUSTNESS
 2. Enter the cover and stego image name. (make sure the images are on desktop)
 3. Images after applying robustness will be saved on desktop. 
 
-Refer the document for more details. (Includes algorithm to encode and decode)
+Refer the document or ppt for more details. (Includes algorithm to encode and decode)
