@@ -19,24 +19,4 @@ TO CHECK FOR ROBUSTNESS
 2. Enter the cover and stego image name. (make sure the images are on desktop)
 3. Images after applying robustness will be saved on desktop. 
 
-
-#ALGORITHM FOR TEXT EMBEDDING:
-
-1. Take input of text that is to be hidden and create a function to convert the text to binary format.
-2. For the conversion of the text to binary digits , 8 bit representation of the text is taken into account.
-3. Input the image in any file format where you wish to embed your message.
-4. Perform the XOR condition between the 2nd LSB of each pixel (cover image) and bits of message.
-5. Replace the resultant with the LSB of the cover image.
-6. Repeat step 4 and 5 for every pixel (red green blue) of the cover image.
-7. And the data is embedded on the cover image.
-8. For retrieving the message from the embedded image, perform the XOR condition between the LSB and 2nd LSB of the image. The resultant is the bit of secret message encoded.
-9. Repeat step 8 for every pixel until the message is encoded. 
-
-#ALGORITHM FOR IMAGE EMBEDDING:
-
-1. Input original image in any format.
-2. Input watermark in any File format.
-3. Resize the watermark according to original image.
-4. Merge the first 6 bits of the original image and first 2 bits of the watermark image.
-5. Get watermarked image.
-6. To decode the embedded image from the watermark image, take the last two bits of the watermarked image and add six zeros to it. (So that it will be a 8 bit pixel and adding zeros will increase the brightness of the image).   
+Refer the document for more details. (Includes algorithm to encode and decode)
