@@ -3,7 +3,11 @@ Digital Watermarking and Steganography
 The program uses LSB technique to watermark. Information is not stored directly like simple LSB, it uses different algorithms for each steganography.
 You can insert a secret text or a secret image inside a cover image of your choice. There is no visible change in the cover image yet your data is saved in it. 
 You can also extract the data embedded if you have the right file. Extracting information works only for this specific algorithm, it is subjective to other watermaking techniques.  
-
+#PACKAGES REQUIRED 
+1. OpenCV
+2. Flask
+3. Numpy
+ 
 #HOW TO RUN THE CODE: 
 
 TO ENCODE AND DECODE 
