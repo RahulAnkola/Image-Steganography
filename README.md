@@ -15,7 +15,7 @@ TO ENCODE AND DECODE
 1. Run the app.py file.
 2. Open the website and navigate there. 
 
-Note: Image embedding might take a few seconds to process depending on the system. 
+Note: Image embedding might take a few seconds to process depending on the system
 
 TO CHECK FOR ROBUSTNESS 
 
